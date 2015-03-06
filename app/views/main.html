@@ -1,0 +1,17 @@
+<button ng-click="addPortfolio()">Add Portfolio</button>
+
+<button style="margin:10px;" ng-click="addWidget($event)">
+    Summary
+</button>
+<button style="margin:10px;" ng-click="addWidget($event)">
+    Risk
+</button>
+<button style="margin:10px;" ng-click="addWidget($event)">
+    Returns
+</button>
+
+
+<div class="row col-md-12">
+    <div class="gridStyle" ng-grid="gridOptions">
+    </div>
+</div>

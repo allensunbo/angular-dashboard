@@ -10,44 +10,20 @@
   Returns
 </button>
 
-
-<div class="row col-md-12">
-  <table id="codexpl">
-    <tr>
-      <th>#</th>
-      <th>Columna</th>
-      <th>Relative</th>
-      <th>Isso</th>
-    </tr>
-    <tr>
-      <td>1</td>
-      <td>This</td>
-      <td>Column</td>
-      <td>Is</td>
-    </tr>
-    <tr>
-      <td>2</td>
-      <td>Coloumn</td>
-      <td>two</td>
-      <td>this</td>
-    </tr>
-    <tr>
-      <td>3</td>
-      <td>is</td>
-      <td>not equals</td>
-      <td>a</td>
-    </tr>
-    <tr>
-      <td>4</td>
-      <td>the</td>
-      <td>Column</td>
-      <td>real</td>
-    </tr>
-    <tr>
-      <td>5</td>
-      <td>first</td>
-      <td>One</td>
-      <td>Coloumn</td>
-    </tr>
-  </table>
+<div>
+  <div ng-repeat="editor in editors.editors">
+    {{editor.name}}
+    <div ng-repeat="page in editor.pages">
+      {{page.name}}
+      <div class="row col-md-12">
+        <table class="widgetTable">
+          <tr ng-repeat="widgetRow in page.widgetRows track by $index">
+            <td ng-repeat="widget in widgetRow.widgets track by $index">
+              {{widget.name}}
+            </td>
+          </tr>
+        </table>
+      </div>
+    </div>
+  </div>
 </div>

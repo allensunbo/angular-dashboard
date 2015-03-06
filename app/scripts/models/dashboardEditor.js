@@ -1,4 +1,5 @@
-function DashboardEditor() {
+function DashboardEditor(name) {
+  this.name = name;
   this.pages = [];
 }
 DashboardEditor.prototype.addPage = function (page) {

@@ -29,21 +29,33 @@ app.controller('MyCtrl', function ($scope, TestData) {
     var widget1 = new DashboardWidget('Summary', 'SUMMARY', {});
     var widget2 = new DashboardWidget('Risk', 'RISK', {});
     var widget3 = new DashboardWidget('Return', 'RETURN', {});
-    var page1 = new DashboardEditorPage();
-    page1.addWidget(widget1);
-    page1.addWidget(widget2);
 
-    var page2 = new DashboardEditorPage();
-    page2.addWidget(widget2);
-    page2.addWidget(widget3);
+    var widgetRow1 = new DashboardWidgetRow();
+    var widgetRow2 = new DashboardWidgetRow();
+    var widgetRow3 = new DashboardWidgetRow();
+    widgetRow1.addWidget(widget1);
+    widgetRow1.addWidget(widget1);
+    widgetRow2.addWidget(widget2);
+    widgetRow2.addWidget(widget2);
+    widgetRow3.addWidget(widget3);
+    widgetRow3.addWidget(widget3);
 
-    var editor = new DashboardEditor();
+    var page1 = new DashboardEditorPage('Page 1');
+    page1.addWidgetRow(widgetRow1);
+    page1.addWidgetRow(widgetRow2);
+
+    var page2 = new DashboardEditorPage('page 2');
+    page2.addWidgetRow(widgetRow2);
+    page2.addWidgetRow(widgetRow3);
+
+    var editor = new DashboardEditor('My Dashboard');
     editor.addPage(page1);
     editor.addPage(page2);
 
     var editors = new DashboardEditors();
     editors.addEditor(editor);
     console.log(editors);
+    $scope.editors = editors;
 
   }
 

@@ -1,12 +1,13 @@
-function DashboardEditorPage() {
-  this.widgets = [];
+function DashboardEditorPage(name) {
+  this.name = name;
+  this.widgetRows = [];
 }
 
-DashboardEditorPage.prototype.addWidget = function (widget) {
-  this.widgets.push(widget);
+DashboardEditorPage.prototype.addWidgetRow = function (widgetRow) {
+  this.widgetRows.push(widgetRow);
 };
 
-DashboardEditorPage.prototype.removeWidget = function (widget) {
-  this.widgets.splice(0, 1);
+DashboardEditorPage.prototype.removeWidgetRow = function (widgetRow) {
+  this.widgetRows.splice(0, 1);
 }
 

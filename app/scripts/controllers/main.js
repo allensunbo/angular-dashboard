@@ -55,7 +55,7 @@ app.controller('MyCtrl', function ($scope) {
 function addRiskWidget($scope) {
   var page = getActiveEditorPage($scope);
   console.log(page);
-  var row21 = new DashboardWidgetRenderRow('text', ['Risk', '', '']);
+  var row21 = new DashboardWidgetRenderRow('header', ['Risk', '', '']);
   var row22 = getRiskWidgetRenderRow();
   var riskWidget = new DashboardWidget('Risk');
   riskWidget.addRenderRow(row21);
@@ -72,7 +72,7 @@ function addRiskWidget($scope) {
 function addReturnWidget($scope) {
   var page = getActiveEditorPage($scope);
   console.log(page);
-  var row1 = new DashboardWidgetRenderRow('text', ['Return', '-5%', '4.8%']);
+  var row1 = new DashboardWidgetRenderRow('header', ['Return', '', '']);
   var row2 = new DashboardWidgetRenderRow('text', ['Active Return', '-15%', '14.8%']);
   var row3 = getReturnWidgetRenderRow();
 
@@ -106,7 +106,7 @@ function getActiveEditorPage($scope) {
 
 function getSampleEditor() {
 
-  var row11 = new DashboardWidgetRenderRow('text', ['Summary', '', '']);
+  var row11 = new DashboardWidgetRenderRow('header', ['Summary', '', '']);
   var row12 = new DashboardWidgetRenderRow('text', ['Total Return', '34%', '-67%']);
   var row13 = new DashboardWidgetRenderRow('text', ['Active Return', '7%', '-12%']);
   var summaryWidget = new DashboardWidget('Summary');
@@ -114,13 +114,13 @@ function getSampleEditor() {
   summaryWidget.addRenderRow(row12);
   summaryWidget.addRenderRow(row13);
 
-  var row21 = new DashboardWidgetRenderRow('text', ['Risk', '', '']);
+  var row21 = new DashboardWidgetRenderRow('header', ['Risk', '', '']);
   var row22 = getRiskWidgetRenderRow();
   var riskWidget = new DashboardWidget('Risk');
   riskWidget.addRenderRow(row21);
   riskWidget.addRenderRow(row22);
 
-  var row31 = new DashboardWidgetRenderRow('text', ['Return', '-5%', '4.8%']);
+  var row31 = new DashboardWidgetRenderRow('header', ['Return', '', '']);
   var row32 = new DashboardWidgetRenderRow('text', ['Active Return', '-15%', '14.8%']);
   var row33 = getReturnWidgetRenderRow();
   var returnWidget = new DashboardWidget('Return');

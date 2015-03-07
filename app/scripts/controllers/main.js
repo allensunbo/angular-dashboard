@@ -67,7 +67,9 @@ app.controller('MyCtrl', function ($scope, TestData) {
 });
 
 function getSampleEditor() {
-  var widget1 = new DashboardWidget('Summary', 'SUMMARY', {});
+  var widget1 = new DashboardWidget('Summary', 'SUMMARY', {
+    type: 'text'
+  });
   var widget2 = getRiskWidget();
   var widget3 = new DashboardWidget('Return', 'RETURN', {});
 
@@ -98,9 +100,11 @@ function getSampleEditor() {
 
 function getRiskWidget() {
   var riskWidget = new DashboardWidget('Risk', 'RISK', {
+    type: 'bar',
     options: {
       chart: {
-        type: 'bar'
+        type: 'bar',
+        height: 250
       }
     },
     plotOptions: {

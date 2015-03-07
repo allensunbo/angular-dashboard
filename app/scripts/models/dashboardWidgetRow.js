@@ -1,5 +1,6 @@
 function DashboardWidgetRow() {
   this.widgets = [];
+  this.rowHeight = 150;
 }
 
 DashboardWidgetRow.prototype.addWidget = function (widget) {

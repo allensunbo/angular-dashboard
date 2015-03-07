@@ -22,9 +22,18 @@
              active="page.active" disabled="page.disabled">
           <div class="row col-md-12">
             <table class="widgetTable">
-              <tr ng-repeat="widgetRow in page.widgetRows track by $index">
+              <tr ng-repeat="widgetRow in page.widgetRows track by $index" height="{{widgetRow.rowHeight}}">
                 <td ng-repeat="widget in widgetRow.widgets track by $index" width="350">
-                  <highchart config="widget.data"></highchart>
+                  <div ng-switch on="widget.data.type">
+                    <div ng-switch-when="text">
+                      {{widget.name}}
+                    </div>
+                    <div ng-switch-when="bar">
+                      <highchart config="widget.data"></highchart>
+                    </div>
+                    <div ng-switch-default>default</div>
+                  </div>
+
                 </td>
               </tr>
             </table>

@@ -44,6 +44,8 @@ app.controller('MyCtrl', function ($scope) {
   };
 
   $scope.addPortfolio = function () {
+    var page = getActiveEditorPage($scope);
+    addPortfolioToPage(page);
 
   };
 
@@ -51,6 +53,22 @@ app.controller('MyCtrl', function ($scope) {
 
   }
 });
+
+
+function addPortfolioToPage(page) {
+  console.log('add portfolio');
+  page.columnData.push('New Portfolio');
+  var widgetRows = page.widgetRows;
+  for (var i = 0; i < widgetRows.length; i++) {
+    var widget = widgetRows[i].widgets[0];
+    console.log(widget);
+    for (var j = 0; j < widget.rows.length; j++) {
+      var lastElem = widget.rows[j].data[widget.rows[j].data.length - 1];
+      widget.rows[j].data.push(lastElem);
+    }
+  }
+  setPageFlatRows(page);
+}
 
 function addRiskWidget($scope) {
   var page = getActiveEditorPage($scope);

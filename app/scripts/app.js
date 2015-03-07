@@ -6,7 +6,7 @@ angular
     'ngResource',
     'ngSanitize',
     'ngRoute',
-    'ngGrid',
+    /*'ngGrid',*/
     'highcharts-ng',
     'ui.bootstrap'
   ])

@@ -53,7 +53,7 @@ app.controller('MyCtrl', function ($scope, TestData) {
 
 function getSampleEditor() {
 
-  var row11 = new DashboardWidgetRenderRow('text', ['Summary']);
+  var row11 = new DashboardWidgetRenderRow('text', ['Summary', '', '']);
   var row12 = new DashboardWidgetRenderRow('text', ['Total Return', '34%', '-67%']);
   var row13 = new DashboardWidgetRenderRow('text', ['Active Return', '7%', '-12%']);
   var summaryWidget = new DashboardWidget('Summary');
@@ -61,7 +61,7 @@ function getSampleEditor() {
   summaryWidget.addRenderRow(row12);
   summaryWidget.addRenderRow(row13);
 
-  var row21 = new DashboardWidgetRenderRow('text', ['Risk', '13%', '-4%']);
+  var row21 = new DashboardWidgetRenderRow('text', ['Risk', '', '']);
   var row22 = getRiskWidgetRenderRow();
   var riskWidget = new DashboardWidget('Risk');
   riskWidget.addRenderRow(row21);
@@ -88,6 +88,9 @@ function getSampleEditor() {
   page1.addWidgetRow(widgetRow1);
   page1.addWidgetRow(widgetRow2);
   page1.addWidgetRow(widgetRow3);
+
+  page1.columnData.push('2012 Portfolio');
+  page1.columnData.push('High Risk');
 
   for (var i = 0; i < page1.widgetRows.length; i++) {
     var widgetRow = page1.widgetRows[i];

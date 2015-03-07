@@ -27,25 +27,20 @@
                 <th style="width:300px">2012 Portfolio</th>
               </tr>-->
               <tbody>
-              <tr ng-repeat="row in page.flatRows track by $index">
-                <!--<td ng-repeat="widget in widgetRow.widgets track by $index">
-                  <div ng-switch on="widget.data.type">
+              <tr>
+                <th></th>
+                <th ng-repeat="column in page.columnData">
+                  {{column}}
+                </th>
+              </tr>
+              <tr ng-repeat="row in page.flatRows track by $index" >
+                <td >{{row.data[0]}}</td>
+                <td ng-repeat="data in row.data.slice(1) track by $index" style="width:350px;">
+                  <div ng-switch on="row.type">
                     <div ng-switch-when="text">
-                      {{widget.name}}
+                      {{data}}
                     </div>
-                    <div ng-switch-when="bar">
-                      <highchart config="widget.data"></highchart>
-                    </div>
-                    <div ng-switch-when="pie">
-                      <highchart config="widget.data"></highchart>
-                    </div>
-                    <div ng-switch-default>Not Supported</div>
-                  </div>
-
-                </td>-->
-                <td ng-repeat="data in row.data track by $index" style="width:350px;">
-                 <div ng-switch on="row.type">
-                    <div ng-switch-when="text">
+                    <div ng-switch-when="header">
                       {{data}}
                     </div>
                     <div ng-switch-when="bar">

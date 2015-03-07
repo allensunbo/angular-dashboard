@@ -106,11 +106,25 @@ body {
   width: 100% !important;
   height: 100% !important;
 }
-
-.widgetTable th, .widgetTable td {
-  padding: 0.8em;
-  border: 1px solid;
+.widgetTable {
+  border-collapse: collapse;
 }
+
+.widgetTable tr {
+  border: none;
+}
+
+.widgetTable td {
+  /*border-left:  solid 1px #f00;*/
+  border-right: solid 2px #006;
+  padding: 0.8em;
+}
+
+/*.widgetTable th, .widgetTable td {
+  padding: 0.8em;
+  *//*border: 1px solid;*//*
+}
+*/
 
 .widgetTable th {
   background-color: #6699FF;

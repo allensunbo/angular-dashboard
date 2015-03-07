@@ -1,7 +1,12 @@
-function DashboardWidget(name, type, data) {
+function DashboardWidget(name) {
   this.name = name;
-  this.type = type;
-  this.data = data;
+  this.rows = [];
 }
 
+DashboardWidget.prototype.addRenderRow = function (row) {
+  this.rows.push(row);
+};
 
+DashboardWidget.prototype.removeRenderRow = function (row) {
+  this.rows.splice(0, 1);
+};

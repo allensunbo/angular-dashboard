@@ -52,28 +52,46 @@ app.controller('MyCtrl', function ($scope, TestData) {
 });
 
 function getSampleEditor() {
-  var widget1 = new DashboardWidget('Summary', 'SUMMARY', {
-    type: 'text'
-  });
-  var widget2 = getRiskWidget();
-  var widget3 = getReturnWidget();
+
+  var row11 = new DashboardWidgetRenderRow('text', ['Summary']);
+  var row12 = new DashboardWidgetRenderRow('text', ['Total Return', '34%', '-67%']);
+  var row13 = new DashboardWidgetRenderRow('text', ['Active Return', '7%', '-12%']);
+  var summaryWidget = new DashboardWidget('Summary');
+  summaryWidget.addRenderRow(row11);
+  summaryWidget.addRenderRow(row12);
+  summaryWidget.addRenderRow(row13);
+
+  var row21 = new DashboardWidgetRenderRow('text', ['Risk', '13%', '-4%']);
+  var row22 = getRiskWidgetRenderRow();
+  var riskWidget = new DashboardWidget('Risk');
+  riskWidget.addRenderRow(row21);
+  riskWidget.addRenderRow(row22);
+
+  // var row31 = getReturnWidgetRenderRow();
+
   var widgetRow1 = new DashboardWidgetRow();
   var widgetRow2 = new DashboardWidgetRow();
-  var widgetRow3 = new DashboardWidgetRow();
-  widgetRow1.addWidget(widget1);
-  widgetRow1.addWidget(widget1);
-  widgetRow2.addWidget(widget2);
-  widgetRow2.addWidget(getRiskWidget());
-  widgetRow3.addWidget(widget3);
-  widgetRow3.addWidget(getReturnWidget());
+  widgetRow1.addWidget(summaryWidget);
+  widgetRow2.addWidget(riskWidget);
 
   var page1 = new DashboardEditorPage('Page 1');
   page1.addWidgetRow(widgetRow1);
   page1.addWidgetRow(widgetRow2);
 
+  for (var i = 0; i < page1.widgetRows.length; i++) {
+    var widgetRow = page1.widgetRows[i];
+    for (var j = 0; j < widgetRow.widgets.length; j++) {
+      var widget = widgetRow.widgets[j];
+      for (var p = 0; p < widget.rows.length; p++) {
+        page1.flatRows.push(widget.rows[p]);
+      }
+    }
+  }
+  console.log(page1);
+
   var page2 = new DashboardEditorPage('page 2');
   page2.addWidgetRow(widgetRow2);
-  page2.addWidgetRow(widgetRow3);
+// page2.addWidgetRow(widgetRow3);
 
   var editor = new DashboardEditor('First Dashboard');
   editor.addPage(page1);
@@ -82,9 +100,13 @@ function getSampleEditor() {
   return editor;
 }
 
-function getRiskWidget() {
-  var riskWidget = new DashboardWidget('Risk', 'RISK', {
-    type: 'bar',
+function getRiskWidgetRenderRow() {
+  var riskRow = new DashboardWidgetRenderRow('bar', ['', getRiskSampleData(), getRiskSampleData()]);
+  return riskRow;
+}
+
+function getRiskSampleData() {
+  return {
     options: {
       chart: {
         type: 'bar',
@@ -113,12 +135,10 @@ function getRiskWidget() {
         }
       }
     }
-
-  });
-  return riskWidget;
+  };
 }
 
-function getReturnWidget() {
+function getReturnWidgetRenderRow() {
   var returnWidget = new DashboardWidget('Return', 'RETURN', {
     type: 'pie',
     options: {

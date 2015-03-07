@@ -49,21 +49,6 @@ app.controller('MyCtrl', function ($scope, TestData) {
   $scope.removeRow = function (row) {
 
   }
-
-  $scope.chartConfig = {
-    options: {
-      chart: {
-        type: 'bar'
-      }
-    },
-    series: [{
-      data: [10, 15, 12, 8, 7]
-    }],
-    title: {
-      text: 'Hello'
-    }
-  }
-
 });
 
 function getSampleEditor() {
@@ -71,8 +56,7 @@ function getSampleEditor() {
     type: 'text'
   });
   var widget2 = getRiskWidget();
-  var widget3 = new DashboardWidget('Return', 'RETURN', {});
-
+  var widget3 = getReturnWidget();
   var widgetRow1 = new DashboardWidgetRow();
   var widgetRow2 = new DashboardWidgetRow();
   var widgetRow3 = new DashboardWidgetRow();
@@ -81,7 +65,7 @@ function getSampleEditor() {
   widgetRow2.addWidget(widget2);
   widgetRow2.addWidget(getRiskWidget());
   widgetRow3.addWidget(widget3);
-  widgetRow3.addWidget(widget3);
+  widgetRow3.addWidget(getReturnWidget());
 
   var page1 = new DashboardEditorPage('Page 1');
   page1.addWidgetRow(widgetRow1);
@@ -104,7 +88,7 @@ function getRiskWidget() {
     options: {
       chart: {
         type: 'bar',
-        height: 250
+        height: 200
       }
     },
     plotOptions: {
@@ -116,7 +100,10 @@ function getRiskWidget() {
       data: randomData()
     }],
     title: {
-      text: 'Risk'
+      text: 'Risk',
+      style: {
+        display: 'none'
+      }
     },
     loading: false,
     xAxis: {
@@ -129,6 +116,35 @@ function getRiskWidget() {
 
   });
   return riskWidget;
+}
+
+function getReturnWidget() {
+  var returnWidget = new DashboardWidget('Return', 'RETURN', {
+    type: 'pie',
+    options: {
+      chart: {
+        type: 'pie',
+        height: 200
+      }
+    },
+    plotOptions: {
+      pie: {
+        size: '100%'
+      }
+    },
+    series: [{
+      data: randomData()
+    }],
+    title: {
+      text: 'Return',
+      style: {
+        display: 'none'
+      }
+    },
+    loading: false
+
+  });
+  return returnWidget;
 }
 
 function randomData() {
@@ -176,16 +192,12 @@ app.factory('TestData', function () {
         data: randomData()
       }],
       /* title: {
-       text: 'Risk'
+       text: 'Risk',
+       style: {
+       display: 'none',
+       },
        },*/
-      loading: false,
-      xAxis: {
-        labels: {
-          formatter: function () {
-            return ['Size', 'Momentum', 'Growth', 'Country', 'Currency'][this.value];
-          }
-        }
-      }
+      loading: false
     }
   }, {
     name: "Returns",
@@ -208,8 +220,8 @@ app.factory('TestData', function () {
       title: {
         text: 'Returns',
         style: {
-          display: 'none',
-        },
+          display: 'none'
+        }
       },
       loading: false
     }

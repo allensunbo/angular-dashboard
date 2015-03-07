@@ -18,12 +18,12 @@
          active="editor.active" disabled="editor.disabled">
 
       <tabset>
-        <tab ng-repeat="page in editor.pages" heading="{{page.name}}"
+        <tab ng-repeat="page in editor.pages track by $index" heading="{{page.name}}"
              active="page.active" disabled="page.disabled">
           <div class="row col-md-12">
             <table class="widgetTable">
-              <tr ng-repeat="widgetRow in page.widgetRows track by $index" height="{{widgetRow.rowHeight}}">
-                <td ng-repeat="widget in widgetRow.widgets track by $index" width="350">
+              <tr ng-repeat="widgetRow in page.widgetRows track by $index">
+                <td ng-repeat="widget in widgetRow.widgets track by $index" width="200">
                   <div ng-switch on="widget.data.type">
                     <div ng-switch-when="text">
                       {{widget.name}}
@@ -31,7 +31,10 @@
                     <div ng-switch-when="bar">
                       <highchart config="widget.data"></highchart>
                     </div>
-                    <div ng-switch-default>default</div>
+                    <div ng-switch-when="pie">
+                      <highchart config="widget.data"></highchart>
+                    </div>
+                    <div ng-switch-default>Not Supported</div>
                   </div>
 
                 </td>

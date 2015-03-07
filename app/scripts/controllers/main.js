@@ -48,12 +48,20 @@ app.controller('MyCtrl', function ($scope, TestData) {
     page2.addWidgetRow(widgetRow2);
     page2.addWidgetRow(widgetRow3);
 
-    var editor = new DashboardEditor('My Dashboard');
+    var editor = new DashboardEditor('First Dashboard');
     editor.addPage(page1);
     editor.addPage(page2);
 
     var editors = new DashboardEditors();
     editors.addEditor(editor);
+
+    var editorCopy = angular.copy(editor);
+    editorCopy.name = 'Another Dashboard!';
+    editorCopy.pages[0].name = 'Portfolio Summary';
+    editorCopy.pages[1].name = 'Risk Decomposition';
+
+    editors.addEditor(editorCopy);
+
     console.log(editors);
     $scope.editors = editors;
 
@@ -62,7 +70,6 @@ app.controller('MyCtrl', function ($scope, TestData) {
   $scope.removeRow = function (row) {
 
   }
-
 
 });
 

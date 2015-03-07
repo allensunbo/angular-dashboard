@@ -11,19 +11,27 @@
 </button>
 
 <div>
-  <div ng-repeat="editor in editors.editors">
-    {{editor.name}}
-    <div ng-repeat="page in editor.pages">
-      {{page.name}}
-      <div class="row col-md-12">
-        <table class="widgetTable">
-          <tr ng-repeat="widgetRow in page.widgetRows track by $index">
-            <td ng-repeat="widget in widgetRow.widgets track by $index">
-              {{widget.name}}
-            </td>
-          </tr>
-        </table>
-      </div>
-    </div>
-  </div>
+  <tabset>
+    <tab ng-repeat="editor in editors.editors track by $index" heading="{{editor.name}}"
+         active="editor.active" disabled="editor.disabled">
+
+      <tabset>
+        <tab ng-repeat="page in editor.pages" heading="{{page.name}}"
+             active="page.active" disabled="page.disabled">
+          <div class="row col-md-12">
+            <table class="widgetTable">
+              <tr ng-repeat="widgetRow in page.widgetRows track by $index">
+                <td ng-repeat="widget in widgetRow.widgets track by $index">
+                  {{widget.name}}
+                </td>
+              </tr>
+            </table>
+          </div>
+        </tab>
+      </tabset>
+
+    </tab>
+  </tabset>
+
+
 </div>

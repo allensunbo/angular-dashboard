@@ -4,6 +4,7 @@ function DashboardEditorPage(name) {
   this.flatRows = [];
   this.id = uuid();
   this.columnData = [];
+  this.active = false;
 }
 
 DashboardEditorPage.prototype.addWidgetRow = function (widgetRow) {

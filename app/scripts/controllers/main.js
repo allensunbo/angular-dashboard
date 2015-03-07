@@ -13,14 +13,15 @@ app.controller('MyCtrl', function ($scope, TestData) {
         break;
       case 'Risk':
         idx = 1;
+        addRiskWidget($scope);
         break;
       case 'Returns':
         idx = 2;
+        addReturnWidget($scope);
         break;
       default:
         idx = 0;
         break;
-
     }
 
   }
@@ -50,6 +51,58 @@ app.controller('MyCtrl', function ($scope, TestData) {
 
   }
 });
+
+function addRiskWidget($scope) {
+  var page = getActiveEditorPage($scope);
+  console.log(page);
+  var row21 = new DashboardWidgetRenderRow('text', ['Risk', '', '']);
+  var row22 = getRiskWidgetRenderRow();
+  var riskWidget = new DashboardWidget('Risk');
+  riskWidget.addRenderRow(row21);
+  riskWidget.addRenderRow(row22);
+
+  var widgetRow = new DashboardWidgetRow();
+  widgetRow.addWidget(riskWidget);
+
+  page.addWidgetRow(widgetRow);
+
+  setPageFlatRows(page);
+}
+
+function addReturnWidget($scope) {
+  var page = getActiveEditorPage($scope);
+  console.log(page);
+  var row1 = new DashboardWidgetRenderRow('text', ['Return', '-5%', '4.8%']);
+  var row2 = new DashboardWidgetRenderRow('text', ['Active Return', '-15%', '14.8%']);
+  var row3 = getReturnWidgetRenderRow();
+
+  var returnWidget = new DashboardWidget('Return');
+  returnWidget.addRenderRow(row1);
+  returnWidget.addRenderRow(row2);
+  returnWidget.addRenderRow(row3);
+
+  var widgetRow = new DashboardWidgetRow();
+  widgetRow.addWidget(returnWidget);
+
+  page.addWidgetRow(widgetRow);
+
+  setPageFlatRows(page);
+}
+
+function getActiveEditorPage($scope) {
+  for (var i = 0; i < $scope.editors.editors.length; i++) {
+    var editor = $scope.editors.editors[i];
+    if (!editor.active) {
+      continue;
+    }
+    for (var j = 0; j < editor.pages.length; j++) {
+      var page = editor.pages[j];
+      if (page.active) {
+        return page;
+      }
+    }
+  }
+}
 
 function getSampleEditor() {
 
@@ -92,15 +145,7 @@ function getSampleEditor() {
   page1.columnData.push('2012 Portfolio');
   page1.columnData.push('High Risk');
 
-  for (var i = 0; i < page1.widgetRows.length; i++) {
-    var widgetRow = page1.widgetRows[i];
-    for (var j = 0; j < widgetRow.widgets.length; j++) {
-      var widget = widgetRow.widgets[j];
-      for (var p = 0; p < widget.rows.length; p++) {
-        page1.flatRows.push(widget.rows[p]);
-      }
-    }
-  }
+  setPageFlatRows(page1);
   console.log(page1);
 
   var page2 = new DashboardEditorPage('page 2');
@@ -112,6 +157,19 @@ function getSampleEditor() {
   editor.addPage(page2);
 
   return editor;
+}
+
+function setPageFlatRows(page) {
+  page.flatRows = [];
+  for (var i = 0; i < page.widgetRows.length; i++) {
+    var widgetRow = page.widgetRows[i];
+    for (var j = 0; j < widgetRow.widgets.length; j++) {
+      var widget = widgetRow.widgets[j];
+      for (var p = 0; p < widget.rows.length; p++) {
+        page.flatRows.push(widget.rows[p]);
+      }
+    }
+  }
 }
 
 function getRiskWidgetRenderRow() {
@@ -162,12 +220,21 @@ function getReturnSampleData() {
     options: {
       chart: {
         type: 'pie',
-        height: 200
+        height: 200,
+        options3d: {
+          enabled: false,
+          alpha: 45,
+          beta: 0,
+          depth: 100
+        }
       }
     },
     plotOptions: {
       pie: {
-        size: '100%'
+        allowPointSelect: true,
+        cursor: 'pointer',
+        size: '100%',
+        depth: 35
       }
     },
     series: [{

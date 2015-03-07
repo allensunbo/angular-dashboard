@@ -114,7 +114,7 @@ body {
   border: none;
 }
 
-.widgetTable td {
+.widgetTable td, .widgetTable th {
   /*border-left:  solid 1px #f00;*/
   border-right: solid 2px #006;
   padding: 0.8em;

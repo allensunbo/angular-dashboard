@@ -33,7 +33,7 @@
                   {{column}}
                 </th>
               </tr>
-              <tr ng-repeat="row in page.flatRows track by $index" >
+              <tr ng-repeat="row in page.flatRows track by $index" style="height:20px;">
                 <td >{{row.data[0]}}</td>
                 <td ng-repeat="data in row.data.slice(1) track by $index" style="width:350px;">
                   <div ng-switch on="row.type">

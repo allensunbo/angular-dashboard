@@ -67,16 +67,27 @@ function getSampleEditor() {
   riskWidget.addRenderRow(row21);
   riskWidget.addRenderRow(row22);
 
+  var row31 = new DashboardWidgetRenderRow('text', ['Return', '-5%', '4.8%']);
+  var row32 = new DashboardWidgetRenderRow('text', ['Active Return', '-15%', '14.8%']);
+  var row33 = getReturnWidgetRenderRow();
+  var returnWidget = new DashboardWidget('Return');
+  returnWidget.addRenderRow(row31);
+  returnWidget.addRenderRow(row32);
+  returnWidget.addRenderRow(row33);
+
   // var row31 = getReturnWidgetRenderRow();
 
   var widgetRow1 = new DashboardWidgetRow();
   var widgetRow2 = new DashboardWidgetRow();
+  var widgetRow3 = new DashboardWidgetRow();
   widgetRow1.addWidget(summaryWidget);
   widgetRow2.addWidget(riskWidget);
+  widgetRow3.addWidget(returnWidget);
 
   var page1 = new DashboardEditorPage('Page 1');
   page1.addWidgetRow(widgetRow1);
   page1.addWidgetRow(widgetRow2);
+  page1.addWidgetRow(widgetRow3);
 
   for (var i = 0; i < page1.widgetRows.length; i++) {
     var widgetRow = page1.widgetRows[i];
@@ -139,8 +150,12 @@ function getRiskSampleData() {
 }
 
 function getReturnWidgetRenderRow() {
-  var returnWidget = new DashboardWidget('Return', 'RETURN', {
-    type: 'pie',
+  var returnWidget = new DashboardWidgetRenderRow('pie', ['', getReturnSampleData(), getReturnSampleData()]);
+  return returnWidget;
+}
+
+function getReturnSampleData() {
+  return {
     options: {
       chart: {
         type: 'pie',
@@ -162,9 +177,7 @@ function getReturnWidgetRenderRow() {
       }
     },
     loading: false
-
-  });
-  return returnWidget;
+  };
 }
 
 function randomData() {

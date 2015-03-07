@@ -23,14 +23,8 @@
           <div class="row col-md-12">
             <table class="widgetTable">
               <tr ng-repeat="widgetRow in page.widgetRows track by $index">
-                <td ng-repeat="widget in widgetRow.widgets track by $index">
-                  <div>
-                    <highchart id="chart1" config="chartConfig"></highchart>
-                  </div>
-                  <!--                  <div>
-                                      <highchart series="widget.data.series" options="widget.data.options"
-                                                 title="widget.data.title"></highchart>
-                                    </div>-->
+                <td ng-repeat="widget in widgetRow.widgets track by $index" width="350">
+                  <highchart config="widget.data"></highchart>
                 </td>
               </tr>
             </table>

@@ -74,10 +74,10 @@ function getSampleEditor() {
   var widgetRow1 = new DashboardWidgetRow();
   var widgetRow2 = new DashboardWidgetRow();
   var widgetRow3 = new DashboardWidgetRow();
-  //widgetRow1.addWidget(widget1);
-  //widgetRow1.addWidget(widget1);
+  widgetRow1.addWidget(widget1);
+  widgetRow1.addWidget(widget1);
   widgetRow2.addWidget(widget2);
-  widgetRow2.addWidget(widget2);
+  widgetRow2.addWidget(getRiskWidget());
   widgetRow3.addWidget(widget3);
   widgetRow3.addWidget(widget3);
 

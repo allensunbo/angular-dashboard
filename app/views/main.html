@@ -41,9 +41,8 @@
                   <div ng-switch-default>
                     {{row.data[0]}}
                   </div>
-
                 </td>
-                <td ng-repeat="data in row.data.slice(1) track by $index" style="width:350px;">
+                <td ng-repeat="data in row.data.slice(1) track by $index">
                   <div ng-switch on="row.type">
                     <div ng-switch-when="text">
                       {{data}}

@@ -108,6 +108,7 @@ body {
 }
 .widgetTable {
   border-collapse: collapse;
+  table-layout: fixed
 }
 
 .widgetTable tr {

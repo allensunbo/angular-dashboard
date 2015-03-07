@@ -1,7 +1,7 @@
 'use strict';
 var app = angular.module('angularDashboardApp');
 
-app.controller('MyCtrl', function ($scope, TestData) {
+app.controller('MyCtrl', function ($scope) {
 
   $scope.addWidget = function (event) {
     console.log('widget added');
@@ -257,77 +257,3 @@ function randomData() {
   }
   return data;
 }
-
-app.factory('TestData', function () {
-  function randomData() {
-    var data = [];
-    for (var i = 0; i < 5; i++) {
-      data.push(Math.ceil(Math.random() * 20));
-    }
-    return data;
-  }
-
-  // data is widget-based, each widget has multiple rows, in general
-  return [{
-    header: {
-      name: 'Summary',
-      template: '<div>Summary</div>'
-    },
-    value: {
-      type: 'text',
-      data: '4'
-    }
-  }, {
-    name: "Risk",
-    value: {
-      type: 'bar',
-      options: {
-        chart: {
-          type: 'bar'
-        }
-      },
-      plotOptions: {
-        bar: {
-          size: '100%'
-        }
-      },
-      series: [{
-        data: randomData()
-      }],
-      /* title: {
-       text: 'Risk',
-       style: {
-       display: 'none',
-       },
-       },*/
-      loading: false
-    }
-  }, {
-    name: "Returns",
-    value: {
-      type: 'pie',
-      options: {
-        chart: {
-          type: 'pie',
-          margin: [-30, 30, 30, 30]
-        }
-      },
-      plotOptions: {
-        pie: {
-          size: '100%'
-        }
-      },
-      series: [{
-        data: randomData()
-      }],
-      title: {
-        text: 'Returns',
-        style: {
-          display: 'none'
-        }
-      },
-      loading: false
-    }
-  }];
-
-});

@@ -20,10 +20,14 @@
       <tabset>
         <tab ng-repeat="page in editor.pages track by $index" heading="{{page.name}}"
              active="page.active" disabled="page.disabled">
-          <div class="row col-md-12">
-            <table class="widgetTable">
+          <div  class="col-md-12">
+            <table class="widgetTable" style="width:100%">
+              <tr>
+                <th style="width:300px">Portfolio</th>
+                <th style="width:300px">2012 Portfolio</th>
+              </tr>
               <tr ng-repeat="widgetRow in page.widgetRows track by $index">
-                <td ng-repeat="widget in widgetRow.widgets track by $index" width="200">
+                <td ng-repeat="widget in widgetRow.widgets track by $index">
                   <div ng-switch on="widget.data.type">
                     <div ng-switch-when="text">
                       {{widget.name}}

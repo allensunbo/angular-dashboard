@@ -107,16 +107,6 @@ body {
   height: 100% !important;
 }
 
-#codexpl th, #codexpl td {
-  padding: 0.8em;
-  border: 1px solid;
-}
-
-#codexpl th {
-  background-color: #6699FF;
-  font-weight: bold;
-}
-
 .widgetTable th, .widgetTable td {
   padding: 0.8em;
   border: 1px solid;

@@ -4,8 +4,7 @@ var app = angular.module('angularDashboardApp');
 app.controller('MyCtrl', function ($scope) {
 
   $scope.addWidget = function (event) {
-    console.log('widget added');
-    console.log(event.target.innerText);
+    console.log(event.target.innerText + ' clicked');
     var idx = 0;
     switch (event.target.innerText) {
       case 'Summary':
@@ -88,9 +87,13 @@ function addPortfolioToPage(page) {
 
 function addRiskWidget($scope) {
   var page = getActiveEditorPage($scope);
+  if (!page) {
+    return;
+  }
   console.log(page);
-  var row21 = new DashboardWidgetRenderRow('header', ['Risk', '', '']);
-  var row22 = getRiskWidgetRenderRow();
+  var numberOfPortfolios = page.columnData.length;
+  var row21 = new DashboardWidgetRenderRow('header', ['Risk']);
+  var row22 = getRiskWidgetRenderRow(numberOfPortfolios);
   var riskWidget = new DashboardWidget('Risk');
   riskWidget.addRenderRow(row21);
   riskWidget.addRenderRow(row22);
@@ -101,14 +104,25 @@ function addRiskWidget($scope) {
   page.addWidgetRow(widgetRow);
 
   setPageFlatRows(page);
+  console.log('Risk widget added');
 }
 
 function addReturnWidget($scope) {
   var page = getActiveEditorPage($scope);
+  if (!page) {
+    return;
+  }
   console.log(page);
-  var row1 = new DashboardWidgetRenderRow('header', ['Return', '', '']);
-  var row2 = new DashboardWidgetRenderRow('text', ['Active Return', '-15%', '14.8%']);
-  var row3 = getReturnWidgetRenderRow();
+  var numberOfPortfolios = page.columnData.length;
+
+  var activeReturn = ['Active Return'];
+  for (var i = 0; i < numberOfPortfolios; i++) {
+    activeReturn.push(50 - randomData()[0] + '%');
+  }
+
+  var row1 = new DashboardWidgetRenderRow('header', ['Return']);
+  var row2 = new DashboardWidgetRenderRow('text', activeReturn);
+  var row3 = getReturnWidgetRenderRow(numberOfPortfolios);
 
   var returnWidget = new DashboardWidget('Return');
   returnWidget.addRenderRow(row1);
@@ -121,9 +135,13 @@ function addReturnWidget($scope) {
   page.addWidgetRow(widgetRow);
 
   setPageFlatRows(page);
+  console.log('Return widget added');
 }
 
 function getActiveEditorPage($scope) {
+  if (!$scope.editors) {
+    return;
+  }
   for (var i = 0; i < $scope.editors.editors.length; i++) {
     var editor = $scope.editors.editors[i];
     if (!editor.active) {
@@ -206,8 +224,12 @@ function setPageFlatRows(page) {
   }
 }
 
-function getRiskWidgetRenderRow() {
-  var riskRow = new DashboardWidgetRenderRow('bar', ['', getRiskSampleData(), getRiskSampleData()]);
+function getRiskWidgetRenderRow(num) {
+  var data = [''];
+  for (var i = 0; i < num; i++) {
+    data.push(getRiskSampleData());
+  }
+  var riskRow = new DashboardWidgetRenderRow('bar', data);
   return riskRow;
 }
 
@@ -244,8 +266,12 @@ function getRiskSampleData() {
   };
 }
 
-function getReturnWidgetRenderRow() {
-  var returnWidget = new DashboardWidgetRenderRow('pie', ['', getReturnSampleData(), getReturnSampleData()]);
+function getReturnWidgetRenderRow(num) {
+  var data = [''];
+  for (var i = 0; i < num; i++) {
+    data.push(getReturnSampleData());
+  }
+  var returnWidget = new DashboardWidgetRenderRow('pie', data);
   return returnWidget;
 }
 
@@ -287,7 +313,7 @@ function getReturnSampleData() {
 function randomData() {
   var data = [];
   for (var i = 0; i < 5; i++) {
-    data.push(Math.ceil(Math.random() * 20));
+    data.push(Math.ceil(Math.random() * 100));
   }
   return data;
 }

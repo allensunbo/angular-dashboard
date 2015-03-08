@@ -37,8 +37,8 @@
               </tr>
               <tr ng-repeat="row in page.flatRows track by $index" style="height:20px;">
                 <td ng-switch on="row.type">
-                  <div ng-switch-when="header">
-                    <span style="border: 1px solid red; font-weight: bold;">{{row.data[0]}}</span>
+                  <div ng-switch-when="header" style="background-color:#6699FF;font-weight: bold;">
+                    <span >{{row.data[0]}}</span>
                   </div>
                   <div ng-switch-default>
                     {{row.data[0]}}

@@ -52,6 +52,22 @@ app.controller('MyCtrl', function ($scope) {
   $scope.removeRow = function (row) {
 
   }
+
+
+  $scope.newPage = function () {
+    var page1 = new DashboardEditorPage('Page 1');
+    setPageFlatRows(page1);
+    console.log(page1);
+
+    var editor = new DashboardEditor('First Dashboard');
+    editor.addPage(page1);
+
+    var editors = new DashboardEditors();
+    editors.addEditor(editor);
+
+    $scope.editors = editors;
+  };
+
 });
 
 

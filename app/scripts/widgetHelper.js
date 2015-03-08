@@ -1,6 +1,6 @@
 function addPortfolioToPage(page) {
   console.log('add portfolio');
-  page.columnData.push('New Portfolio ' + (page.columnData.length + 1));
+  page.columnData.push({name: 'New Portfolio ' + (page.columnData.length + 1), id: uuid()});
   var widgetRows = page.widgetRows;
   for (var i = 0; i < widgetRows.length; i++) {
     var widget = widgetRows[i].widgets[0];

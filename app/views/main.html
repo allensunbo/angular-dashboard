@@ -30,13 +30,19 @@
               <tr>
                 <th></th>
                 <th ng-repeat="column in page.columnData">
-                  {{column}}
+                  {{column.name}}
+                  <button ng-click="configPortfolio(column)">*</button>
+                  <button ng-click="removePortfolio(column)">x</button>
                 </th>
               </tr>
               <tr ng-repeat="row in page.flatRows track by $index" style="height:20px;">
                 <td ng-switch on="row.type">
                   <div ng-switch-when="header" style="background-color:#6699FF;font-weight: bold;">
-                    <span >{{row.data[0]}}</span>
+                    <span>
+                      {{row.data[0]}}
+                      <button ng-click="configWidget(widget)">*</button>
+                      <button ng-click="removeWidget(widget)">x</button>
+                    </span>
                   </div>
                   <div ng-switch-default>
                     {{row.data[0]}}
@@ -45,9 +51,6 @@
                 <td ng-repeat="data in row.data.slice(1) track by $index">
                   <div ng-switch on="row.type">
                     <div ng-switch-when="text">
-                      {{data}}
-                    </div>
-                    <div ng-switch-when="header">
                       {{data}}
                     </div>
                     <div ng-switch-when="bar">

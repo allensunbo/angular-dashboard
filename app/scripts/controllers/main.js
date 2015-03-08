@@ -45,7 +45,6 @@ app.controller('MyCtrl', function ($scope) {
   $scope.addPortfolio = function () {
     var page = getActiveEditorPage($scope);
     addPortfolioToPage(page);
-
   };
 
   $scope.removeRow = function (row) {
@@ -65,6 +64,14 @@ app.controller('MyCtrl', function ($scope) {
 
     $scope.editors = editors;
   };
+
+  $scope.configPortfolio = function (column) {
+    console.log(column);
+  }
+
+  $scope.removePortfolio = function (column) {
+    console.log(column);
+  }
 
 });
 

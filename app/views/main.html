@@ -1,8 +1,6 @@
 <button ng-click="newPage()">New</button>
 
-<button ng-click="showDemo()">Demo</button>
-
-<button ng-click="addPortfolio()">Add Portfolio</button>
+<button ng-click="addPortfolio()" ng-show="editors.editors">Add Portfolio</button>
 
 <button style="margin:10px;" ng-click="addWidget($event)">
   Summary

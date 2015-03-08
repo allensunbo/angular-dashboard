@@ -25,13 +25,14 @@ function addRiskWidget($scope) {
     header.push('');
   }
 
-  var row21 = new DashboardWidgetRenderRow('header', header);
+  var widgetRow = new DashboardWidgetRow();
+
+  var row21 = new DashboardWidgetRenderRow('header', header, widgetRow);
   var row22 = getRiskWidgetRenderRow(numberOfPortfolios);
   var riskWidget = new DashboardWidget('Risk');
   riskWidget.addRenderRow(row21);
   riskWidget.addRenderRow(row22);
 
-  var widgetRow = new DashboardWidgetRow();
   widgetRow.addWidget(riskWidget);
 
   page.addWidgetRow(widgetRow);
@@ -57,7 +58,8 @@ function addReturnWidget($scope) {
     activeReturn.push(50 - randomData()[0] + '%');
   }
 
-  var row1 = new DashboardWidgetRenderRow('header', header);
+  var widgetRow = new DashboardWidgetRow();
+  var row1 = new DashboardWidgetRenderRow('header', header, widgetRow);
   var row2 = new DashboardWidgetRenderRow('text', activeReturn);
   var row3 = getReturnWidgetRenderRow(numberOfPortfolios);
 
@@ -66,7 +68,6 @@ function addReturnWidget($scope) {
   returnWidget.addRenderRow(row2);
   returnWidget.addRenderRow(row3);
 
-  var widgetRow = new DashboardWidgetRow();
   widgetRow.addWidget(returnWidget);
 
   page.addWidgetRow(widgetRow);

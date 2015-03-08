@@ -73,6 +73,14 @@ app.controller('MyCtrl', function ($scope) {
     console.log(column);
   }
 
+  $scope.configWidget = function (row) {
+    console.log(row);
+  }
+
+  $scope.removeWidget = function (row) {
+    console.log(row);
+  }
+
 });
 
 

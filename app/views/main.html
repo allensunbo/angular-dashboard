@@ -40,8 +40,8 @@
                   <div ng-switch-when="header" style="background-color:#6699FF;font-weight: bold;">
                     <span>
                       {{row.data[0]}}
-                      <button ng-click="configWidget(widget)">*</button>
-                      <button ng-click="removeWidget(widget)">x</button>
+                      <button ng-click="configWidget(row)">*</button>
+                      <button ng-click="removeWidget(row)">x</button>
                     </span>
                   </div>
                   <div ng-switch-default>

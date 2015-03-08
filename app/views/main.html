@@ -31,11 +31,17 @@
                 <th></th>
                 <th ng-repeat="column in page.columnData">
                   {{column.name}}
-                  <button class="btn-primary" ng-click="configPortfolio(column)">
+                  <button class="btn-primary pull-right" ng-click="removePortfolio(column)">
+                    <span style="color:#dd0000;"><i class="fa fa-trash"></i></span>
+                  </button>
+                  <button class="btn-primary pull-right" ng-click="configPortfolio(column)">
                     <span style="color:lightgreen;"><i class="fa fa-cog"></i></span>
                   </button>
-                  <button class="btn-primary" ng-click="removePortfolio(column)">
-                    <span style="color:#dd0000;"><i class="fa fa-trash"></i></span>
+                  <button class="btn-primary pull-right" ng-click="moveRight(column)">
+                    <span style="color:greenyellow;"><i class="fa fa-arrow-right"></i></span>
+                  </button>
+                  <button class="btn-primary pull-right" ng-click="moveLeft(column)">
+                    <span style="color:greenyellow;"><i class="fa fa-arrow-left"></i></span>
                   </button>
                 </th>
               </tr>
@@ -44,11 +50,11 @@
                   <div ng-switch-when="header" style="background-color:#6699FF;font-weight: bold;">
                     <span>
                       {{row.data[0]}}
-                      <button class="btn-primary" ng-click="configWidget(row)">
-                        <span style="color:lightgreen;"><i class="fa fa-cog"></i></span>
-                      </button>
-                      <button class="btn-primary" ng-click="removeWidget(row)">
+                      <button class="btn-primary pull-right" ng-click="removeWidget(row)">
                         <span style="color:#dd0000;"><i class="fa fa-trash"></i></span>
+                      </button>
+                      <button class="btn-primary pull-right" ng-click="configWidget(row)">
+                        <span style="color:lightgreen;"><i class="fa fa-cog"></i></span>
                       </button>
                     </span>
                   </div>
@@ -67,7 +73,7 @@
                     <div ng-switch-when="pie">
                       <highchart config="data"></highchart>
                     </div>
-                    <div ng-switch-default>Not Supported</div>
+                    <div ng-switch-default></div>
                   </div>
                 </td>
               </tr>

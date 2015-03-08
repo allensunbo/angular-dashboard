@@ -76,6 +76,7 @@ app.controller('MyCtrl', function ($scope) {
 
   $scope.configPortfolio = function (column) {
     console.log(column);
+    alert('Not supported yet!');
   }
 
   $scope.removePortfolio = function (column) {
@@ -101,6 +102,7 @@ app.controller('MyCtrl', function ($scope) {
 
   $scope.configWidget = function (row) {
     console.log(row);
+    alert('Not supported yet!');
   }
 
   $scope.removeWidget = function (row) {
@@ -121,6 +123,61 @@ app.controller('MyCtrl', function ($scope) {
     }
   }
 
+  $scope.moveRight = function (column) {
+    console.log('move right');
+    var page = getActiveEditorPage($scope);
+    console.log(page);
+    console.log(column);
+    for (var i = 0; i < page.columnData.length; i++) {
+      if (column.id === page.columnData[i].id) {
+        console.log('column - ' + i);
+        if (i === page.columnData.length - 1) return;
+        moveRight(page.columnData, i);
+        for (var j = 0; j < page.widgetRows.length; j++) {
+          var widget = page.widgetRows[j].widgets[0];
+          for (var p = 0; p < widget.rows.length; p++) {
+            var row = widget.rows[p];
+            if (row.type === 'header') {
+              //do nothing
+            } else {
+              moveRight(row.data, i + 1);
+            }
+          }
+        }
+        setPageFlatRows(page);
+        return;
+      }
+    }
+  }
+
+  $scope.moveLeft = function (column) {
+    console.log('move left');
+    var page = getActiveEditorPage($scope);
+    console.log(page);
+    for (var i = 0; i < page.columnData.length; i++) {
+      if (column.id === page.columnData[i].id) {
+        console.log('column - ' + i);
+        if (i === 0) return;
+        moveLeft(page.columnData, i);
+        for (var j = 0; j < page.widgetRows.length; j++) {
+          var widget = page.widgetRows[j].widgets[0];
+          for (var p = 0; p < widget.rows.length; p++) {
+            var row = widget.rows[p];
+            if (row.type === 'header') {
+              //do nothing
+            } else {
+              moveLeft(row.data, i + 1);
+            }
+          }
+        }
+        setPageFlatRows(page);
+        return;
+      }
+    }
+
+  }
+
 });
+
 
 

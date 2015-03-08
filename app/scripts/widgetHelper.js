@@ -255,3 +255,14 @@ function randomData() {
   }
   return data;
 }
+
+
+function moveRight(data, i) {
+  var removed = data.splice(i, 1);
+  data.splice(i + 1, 0, removed[0]);
+}
+
+function moveLeft(data, i) {
+  var removed = data.splice(i, 1);
+  data.splice(i - 1, 0, removed[0]);
+}

@@ -3,6 +3,15 @@ var app = angular.module('angularDashboardApp');
 
 app.controller('MyCtrl', function ($scope) {
 
+  // turn off animation for all charts!
+  Highcharts.setOptions({
+    plotOptions: {
+      series: {
+        animation: false
+      }
+    }
+  });
+
   $scope.addWidget = function (event) {
     console.log(event.target.innerText + ' clicked');
     var idx = 0;

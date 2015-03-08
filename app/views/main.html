@@ -31,8 +31,8 @@
                 <th></th>
                 <th ng-repeat="column in page.columnData">
                   {{column.name}}
-                  <button ng-click="configPortfolio(column)">*</button>
-                  <button ng-click="removePortfolio(column)">x</button>
+                  <button ng-click="configPortfolio(column)"><i class="fa fa-cog"></i></button>
+                  <button ng-click="removePortfolio(column)"><i class="fa fa-trash"></i></button>
                 </th>
               </tr>
               <tr ng-repeat="row in page.flatRows track by $index" style="height:20px;">
@@ -40,8 +40,8 @@
                   <div ng-switch-when="header" style="background-color:#6699FF;font-weight: bold;">
                     <span>
                       {{row.data[0]}}
-                      <button ng-click="configWidget(row)">*</button>
-                      <button ng-click="removeWidget(row)">x</button>
+                      <button ng-click="configWidget(row)"><i class="fa fa-cog"></i></button>
+                      <button ng-click="removeWidget(row)"><i class="fa fa-trash"></i></button>
                     </span>
                   </div>
                   <div ng-switch-default>

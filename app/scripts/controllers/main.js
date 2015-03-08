@@ -79,6 +79,20 @@ app.controller('MyCtrl', function ($scope) {
 
   $scope.removeWidget = function (row) {
     console.log(row);
+    if (!$scope.editors) {
+      return;
+    }
+
+    var id = row.widgetRow.id;
+    var page = getActiveEditorPage($scope);
+    for (var i = 0; i < page.widgetRows.length; i++) {
+      var r = page.widgetRows[i];
+      if (r.id === id) {
+        page.widgetRows.splice(i, 1);
+        setPageFlatRows(page);
+        return;
+      }
+    }
   }
 
 });

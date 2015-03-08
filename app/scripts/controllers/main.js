@@ -71,6 +71,23 @@ app.controller('MyCtrl', function ($scope) {
 
   $scope.removePortfolio = function (column) {
     console.log(column);
+    var page = getActiveEditorPage($scope);
+    console.log(page);
+    for (var i = 0; i < page.columnData.length; i++) {
+      if (column.id === page.columnData[i].id) {
+        page.columnData.splice(i, 1);
+        for (var j = 0; j < page.widgetRows.length; j++) {
+          var widget = page.widgetRows[j].widgets[0];
+          for (var p = 0; p < widget.rows.length; p++) {
+            var row = widget.rows[p];
+            row.data.splice(i + 1, 1);
+          }
+
+        }
+        setPageFlatRows(page);
+      }
+    }
+
   }
 
   $scope.configWidget = function (row) {
